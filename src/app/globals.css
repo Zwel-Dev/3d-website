@@ -1,0 +1,183 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg: 5 5 6;
+  --color-surface: 11 11 13;
+  --color-fg: 246 246 247;
+  --color-fg-muted: 154 155 162;
+  --color-accent: 212 163 115;
+  --color-accent-glow: 243 217 177;
+
+  --easing-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --easing-smooth: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background: rgb(var(--color-bg));
+  color: rgb(var(--color-fg));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: auto;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+  cursor: none;
+  background:
+    radial-gradient(1200px 800px at 75% -10%, rgba(212, 163, 115, 0.06), transparent 60%),
+    radial-gradient(900px 700px at 10% 110%, rgba(91, 141, 239, 0.05), transparent 55%),
+    rgb(var(--color-bg));
+}
+
+@media (pointer: coarse) {
+  body { cursor: auto; }
+}
+
+::selection {
+  background: rgba(212, 163, 115, 0.35);
+  color: #fff;
+}
+
+::-webkit-scrollbar { width: 0; height: 0; }
+
+/* Utility */
+.text-balance { text-wrap: balance; }
+.text-pretty { text-wrap: pretty; }
+
+.glass {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015));
+  backdrop-filter: blur(14px) saturate(120%);
+  -webkit-backdrop-filter: blur(14px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass-strong {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+  backdrop-filter: blur(22px) saturate(140%);
+  -webkit-backdrop-filter: blur(22px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.text-gradient {
+  background: linear-gradient(180deg, #ffffff 0%, #c2c3c7 70%, #6f7079 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-accent {
+  background: linear-gradient(120deg, #f3d9b1 0%, #d4a373 45%, #a98467 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.divider-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+}
+
+/* Mask reveal */
+.mask-reveal {
+  overflow: hidden;
+  display: inline-block;
+}
+.mask-reveal > span {
+  display: inline-block;
+  will-change: transform;
+}
+
+/* Marquee */
+@keyframes marquee {
+  from { transform: translateX(0%); }
+  to { transform: translateX(-50%); }
+}
+.marquee {
+  animation: marquee 40s linear infinite;
+}
+
+/* Noise grain */
+.noise-overlay {
+  position: fixed;
+  inset: -50%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* Cursor */
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 10000;
+  border-radius: 9999px;
+  transform: translate3d(-50%, -50%, 0);
+  mix-blend-mode: difference;
+}
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  background: #fff;
+}
+.cursor-ring {
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  transition: width 0.3s var(--easing-expo), height 0.3s var(--easing-expo), border-color 0.3s var(--easing-expo);
+}
+.cursor-ring.is-hover {
+  width: 64px;
+  height: 64px;
+  border-color: rgba(243, 217, 177, 0.9);
+}
+
+/* Section base */
+section {
+  position: relative;
+  isolation: isolate;
+}
+
+/* Smooth focus ring */
+:focus-visible {
+  outline: 2px solid rgba(243, 217, 177, 0.7);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* Disable cursor None on prefers-reduced */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  body { cursor: auto; }
+  .cursor-dot, .cursor-ring { display: none; }
+}
