@@ -113,15 +113,12 @@ export function Hero() {
           >
             <div className="flex flex-col gap-3 font-mono text-[11px] uppercase tracking-[0.3em] text-ink-400">
               <div className="flex items-center justify-between border-b border-white/5 pb-2">
-                <span>Based in</span>
-                <span className="text-ink-100">Mingaladon, Yangon · GMT+6:30</span>
+                <span className="text-ink-100">Yangon, Myanmar · GMT+6:30</span>
               </div>
               <div className="flex items-center justify-between border-b border-white/5 pb-2">
-                <span>Discipline</span>
-                <span className="text-ink-100">Frontend · MERN · Motion</span>
+                <span className="text-ink-100">Full-stack · MERN · Motion</span>
               </div>
               <div className="flex items-center justify-between pb-1">
-                <span>Status</span>
                 <span className="text-emerald-300">Open for new work</span>
               </div>
             </div>

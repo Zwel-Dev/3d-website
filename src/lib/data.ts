@@ -9,6 +9,15 @@ export interface Project {
   cover: string;
   accent: string;
   link?: string;
+  /**
+   * Optional looping video shown in place of the cover image.
+   * For Vimeo, supply just the numeric video id — the embed is rendered in
+   * Vimeo's background mode (muted, looping, no controls, cover-cropped).
+   */
+  video?: {
+    provider: 'vimeo';
+    id: string;
+  };
 }
 
 export interface ExperienceItem {
@@ -47,13 +56,14 @@ export const projects: Project[] = [
     cover: '/assets/projects/trendhaven.webp',
     accent: '#d4a373',
     link: 'https://github.com/ZweThuta/MarketPlace-Website',
+    video: { provider: 'vimeo', id: '1195221813' },
   },
   {
     id: 'khin-htet-hlaing',
     title: 'Khin Htet Hlaing — Portfolio',
     client: 'Khin Htet Hlaing',
     year: '2024',
-    role: 'Frontend Developer',
+    role: 'Graphic Designer',
     tags: ['React', 'JavaScript', 'Tailwind'],
     description:
       'A portfolio site for a graphic designer — built to let the work breathe. Clean typography, restrained motion, and a structure that scales as the body of work grows.',

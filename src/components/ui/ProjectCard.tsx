@@ -62,16 +62,27 @@ export function ProjectCard({ project, index, reverse }: Props) {
           }}
           data-hover
         >
-          <motion.img
-            src={project.cover}
-            alt={project.title}
-            initial={{ scale: 1.15 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.6, ease: EASE }}
-            className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.4s] ease-expo group-hover:scale-[1.06]"
-            loading="lazy"
-          />
+          {project.video?.provider === 'vimeo' ? (
+            <iframe
+              src={`https://player.vimeo.com/video/${project.video.id}?autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0`}
+              title={project.title}
+              loading="lazy"
+              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+              allowFullScreen
+              className="absolute inset-0 h-full w-full border-0"
+            />
+          ) : (
+            <motion.img
+              src={project.cover}
+              alt={project.title}
+              initial={{ scale: 1.15 }}
+              whileInView={{ scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.6, ease: EASE }}
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1.4s] ease-expo group-hover:scale-[1.06]"
+              loading="lazy"
+            />
+          )}
           <div
             className="absolute inset-0 mix-blend-overlay opacity-50 transition-opacity duration-700 group-hover:opacity-30"
             style={{
