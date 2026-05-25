@@ -36,6 +36,28 @@ const EDGES: [number, number][] = [
   [0, 6],
 ];
 
+// viewBox units of clearance so lines stop before they overlap the pills.
+const OUTER_PAD = 8;
+const CENTRAL_PAD = 12;
+
+/** Returns the point on the segment (anchor → towards) that sits `pad` units
+ *  away from `towards`. Use it to trim a line so its end lands on the edge of
+ *  the target node's pill instead of underneath it. */
+function trim(
+  anchor: { x: number; y: number },
+  towards: { x: number; y: number },
+  pad: number,
+) {
+  const dx = towards.x - anchor.x;
+  const dy = towards.y - anchor.y;
+  const dist = Math.hypot(dx, dy) || 1;
+  const ratio = (dist - pad) / dist;
+  return {
+    x: anchor.x + dx * ratio,
+    y: anchor.y + dy * ratio,
+  };
+}
+
 export function SceneBackend() {
   const trackRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -53,6 +75,12 @@ export function SceneBackend() {
   return (
     <div ref={trackRef} className="relative h-[210vh]">
       <div className="sticky top-0 flex h-screen w-full items-center overflow-hidden">
+        {/* Backdrop that masks the global Earth so the network reads cleanly. */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 -z-20 bg-ink-950/88"
+        />
+
         {/* ambient glow */}
         <div
           aria-hidden
@@ -168,12 +196,20 @@ function Edge({
     [0, 0.45, 0.45, 0],
   );
 
+  // Pull each endpoint back so the line lands on the pill's edge instead of
+  // passing through it. The central node uses a larger pad because its pill
+  // is physically bigger.
+  const fromPad = from.central ? CENTRAL_PAD : OUTER_PAD;
+  const toPad = to.central ? CENTRAL_PAD : OUTER_PAD;
+  const a = trim(to, from, fromPad);
+  const b = trim(from, to, toPad);
+
   return (
     <motion.line
-      x1={from.x}
-      y1={from.y}
-      x2={to.x}
-      y2={to.y}
+      x1={a.x}
+      y1={a.y}
+      x2={b.x}
+      y2={b.y}
       stroke="url(#net-line)"
       strokeWidth={0.18}
       strokeLinecap="round"
@@ -191,14 +227,20 @@ function Pulse({
   to: Node;
   delay: number;
 }) {
+  // Pulse travels the same trimmed segment as the line above.
+  const fromPad = from.central ? CENTRAL_PAD : OUTER_PAD;
+  const toPad = to.central ? CENTRAL_PAD : OUTER_PAD;
+  const a = trim(to, from, fromPad);
+  const b = trim(from, to, toPad);
+
   return (
     <motion.circle
       r={0.7}
       fill="url(#net-pulse)"
-      initial={{ cx: from.x, cy: from.y, opacity: 0 }}
+      initial={{ cx: a.x, cy: a.y, opacity: 0 }}
       animate={{
-        cx: [from.x, to.x],
-        cy: [from.y, to.y],
+        cx: [a.x, b.x],
+        cy: [a.y, b.y],
         opacity: [0, 1, 0],
       }}
       transition={{

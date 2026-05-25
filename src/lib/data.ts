@@ -135,8 +135,8 @@ export const navLinks = [
 ];
 
 export const socials = [
-  { label: 'GitHub', href: 'https://github.com' },
-  { label: 'LinkedIn', href: 'https://linkedin.com' },
+  { label: 'GitHub', href: 'https://github.com/ZweThuta' },
+  { label: 'LinkedIn', href: 'https://mm.linkedin.com/in/zwe-thuta-1605493a2' },
   { label: 'Email', href: 'mailto:zwethuta1998@gmail.com' },
   { label: 'Call · +95 9 766135388', href: 'tel:+959766135388' },
 ];

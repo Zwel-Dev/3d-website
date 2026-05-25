@@ -9,17 +9,10 @@ import { useInViewFrameloop } from '@/hooks/useInViewFrameloop';
 
 useGLTF.preload('/assets/3d/robo_probe.glb');
 
-/* ------------------------------------------------------------------------ */
-/* Robo probe — the only object in the scene. Slow rotation + Float drift.  */
-/* ------------------------------------------------------------------------ */
 function RoboProbe() {
   const groupRef = useRef<THREE.Group>(null);
   const { scene } = useGLTF('/assets/3d/robo_probe.glb');
 
-  // Probe just rotates on its own axis. Pointer-driven parallax is owned by
-  // the camera (see CameraDrift) so the subject stays put while the world
-  // appears to orbit around it — feels more cinematic than the probe and the
-  // camera both reacting to the cursor.
   useFrame((_, delta) => {
     if (!groupRef.current) return;
     groupRef.current.rotation.y += delta * 0.18;
@@ -60,14 +53,6 @@ function CinematicLights() {
   );
 }
 
-/* ------------------------------------------------------------------------ */
-/* Camera drift — smoothed pointer parallax + slow ambient breathing.       */
-/* The raw `state.pointer` jumps frame-to-frame with the mouse; we lerp it  */
-/* into a separate vector so quick cursor flicks ease in instead of snap.   */
-/* ------------------------------------------------------------------------ */
-// Camera frames the centre of the viewport (origin). The probe sits off-axis
-// at [1.6, -1.0, 0], so it lands in the right-bottom quadrant instead of being
-// re-centred by the camera every frame.
 const LOOK_AT = new THREE.Vector3(0, 0, 0);
 const PARALLAX_X = 0.85;
 const PARALLAX_Y = 0.45;
