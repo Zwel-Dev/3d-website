@@ -60,23 +60,25 @@ export function Hero() {
           className="mb-8 flex items-center gap-3"
           style={{ transform: 'translateY(calc(var(--py-slow,0px) * -1))' }}
         >
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(110,231,183,0.8)]" />
-          <span className="font-mono text-[10px] uppercase tracking-[0.45em] text-ink-300">
+          {/* <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(110,231,183,0.8)]" /> */}
+          {/* <span className="font-mono text-[10px] uppercase tracking-[0.45em] text-ink-300">
             Portfolio · 2025 Edition
-          </span>
+          </span> */}
         </motion.div>
 
-        <h1 className="font-display text-mega text-balance">
+        <h1 className="font-display text-[clamp(2.5rem,9vw,10rem)] leading-[0.9] tracking-[-0.04em] text-balance">
           <RevealText
             text="Frontend-first"
             className="text-gradient mr-4 italic"
             splitBy="word"
+            immediate
           />
           <RevealText
             text="full-stack"
             className="text-gradient"
             splitBy="word"
             delay={0.1}
+            immediate
           />
           <br />
           <RevealText
@@ -84,6 +86,7 @@ export function Hero() {
             className="text-gradient-accent italic"
             splitBy="word"
             delay={0.2}
+            immediate
           />
         </h1>
 

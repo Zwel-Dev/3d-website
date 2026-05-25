@@ -21,12 +21,6 @@ export interface ExperienceItem {
   stack: string[];
 }
 
-export interface Skill {
-  name: string;
-  category: 'language' | 'framework' | 'tooling' | 'design' | 'backend';
-  level: number;
-}
-
 export const projects: Project[] = [
   {
     id: 'intelliz-ai',
@@ -120,25 +114,6 @@ export const experience: ExperienceItem[] = [
       'Three years of architecture — AutoCAD, SketchUp, Lumion — training my eye for proportion, spatial rhythm, and the weight of a single line. COVID closed the university, and that detour quietly became the foundation of how I now think about UI.',
     stack: ['AutoCAD', 'SketchUp', 'Lumion', 'Design'],
   },
-];
-
-export const skills: Skill[] = [
-  { name: 'JavaScript', category: 'language', level: 94 },
-  { name: 'TypeScript', category: 'language', level: 88 },
-  { name: 'Python', category: 'language', level: 74 },
-  { name: 'Java', category: 'language', level: 72 },
-  { name: 'React', category: 'framework', level: 92 },
-  { name: 'Next.js', category: 'framework', level: 88 },
-  { name: 'Angular', category: 'framework', level: 72 },
-  { name: 'Tailwind CSS', category: 'design', level: 92 },
-  { name: 'Node.js', category: 'backend', level: 86 },
-  { name: 'Express', category: 'backend', level: 84 },
-  { name: 'MongoDB', category: 'backend', level: 88 },
-  { name: 'MySQL', category: 'backend', level: 78 },
-  { name: 'PostgreSQL', category: 'backend', level: 75 },
-  { name: 'Figma', category: 'design', level: 82 },
-  { name: 'Git & GitHub', category: 'tooling', level: 90 },
-  { name: 'Postman', category: 'tooling', level: 85 },
 ];
 
 export const navLinks = [
