@@ -42,10 +42,15 @@ export function Hero() {
       {/* 3D scene */}
       <HeroScene className="absolute inset-0 -z-10" />
 
-      {/* gradient overlays */}
+      {/* gradient overlays — left-side darkening keeps the hero copy legible
+          against whatever the WebGL scene paints behind it. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_70%_30%,rgba(243,217,177,0.12),transparent_50%)]"
+        className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-r from-ink-950/95 via-ink-950/55 to-transparent"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_75%_40%,rgba(243,217,177,0.10),transparent_55%)]"
       />
       <div
         aria-hidden

@@ -45,12 +45,12 @@ export function SceneMotion() {
     <div ref={trackRef} className="relative h-[230vh]">
       <div className="sticky top-0 flex h-screen w-full items-center overflow-hidden">
         {/* WebGL scene fills the pinned viewport */}
-        <motion.div
+        {/* <motion.div
           style={{ opacity: canvasOpacity }}
           className="absolute inset-0"
         >
           <MotionScene3D className="absolute inset-0 h-full w-full" />
-        </motion.div>
+        </motion.div> */}
 
         {/* vignette to keep text legible */}
         <div

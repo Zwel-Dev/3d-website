@@ -1,10 +1,32 @@
 'use client';
 
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Environment, Float, MeshDistortMaterial } from '@react-three/drei';
+import { Environment, Float, useGLTF } from '@react-three/drei';
 import { Suspense, useMemo, useRef } from 'react';
 import * as THREE from 'three';
 import { useInViewFrameloop } from '@/hooks/useInViewFrameloop';
+
+// Helmet is heavy (~1.3 MB) and only loads when Chapter III mounts. No preload.
+
+function AstronautHelmet() {
+  const ref = useRef<THREE.Group>(null);
+  const { scene } = useGLTF('/assets/3d/astronaut_helmet.glb');
+
+  useFrame((state, delta) => {
+    if (!ref.current) return;
+    ref.current.rotation.y += delta * 0.18;
+    ref.current.rotation.x =
+      Math.sin(state.clock.elapsedTime * 0.35) * 0.12;
+  });
+
+  return (
+    <Float speed={0.9} floatIntensity={0.6} rotationIntensity={0}>
+      <group ref={ref} scale={1.4}>
+        <primitive object={scene} />
+      </group>
+    </Float>
+  );
+}
 
 function Orbitals() {
   const groupRef = useRef<THREE.Group>(null);
@@ -17,20 +39,7 @@ function Orbitals() {
 
   return (
     <group ref={groupRef}>
-      <Float speed={1.2} floatIntensity={0.9} rotationIntensity={0.35}>
-        <mesh>
-          <icosahedronGeometry args={[1.25, 5]} />
-          <MeshDistortMaterial
-            color="#f3d9b1"
-            metalness={0.7}
-            roughness={0.2}
-            distort={0.32}
-            speed={1.4}
-            emissive="#a98467"
-            emissiveIntensity={0.45}
-          />
-        </mesh>
-      </Float>
+      <AstronautHelmet />
 
       <Float speed={0.9} floatIntensity={0.7} rotationIntensity={0.55}>
         <mesh position={[2.8, -0.4, -1.4]} scale={0.42}>
