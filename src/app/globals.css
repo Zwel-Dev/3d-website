@@ -16,6 +16,7 @@
 
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html,
@@ -26,6 +27,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   scroll-behavior: auto;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Hard guard against horizontal scroll on mobile — any rogue absolutely
+   positioned glow or oversized SVG can't drag a scrollbar onto the page. */
+html,
+body {
+  overflow-x: clip;
+  max-width: 100vw;
 }
 
 html.lenis,

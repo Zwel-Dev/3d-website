@@ -3,18 +3,18 @@ import { socials } from '@/lib/data';
 export function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="relative z-10 border-t border-white/5 bg-ink-950/80 px-6 py-12 md:px-12">
-      <div className="mx-auto flex max-w-7xl flex-col items-start gap-8 md:flex-row md:items-center md:justify-between">
+    <footer className="relative z-10 border-t border-white/5 bg-ink-950/80 px-6 py-10 md:px-12 md:py-12">
+      <div className="mx-auto flex max-w-7xl flex-col items-start gap-6 md:flex-row md:items-center md:justify-between md:gap-8">
         <div className="flex flex-col gap-2">
           <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-ink-400">
             © {year} — Zwe Thuta
           </span>
-          <span className="text-sm text-ink-300">
-            Designed & engineered with care. Built in Yangon · Available worldwide.
+          <span className="max-w-xs text-sm text-ink-300 md:max-w-none">
+            Designed &amp; engineered with care. Built in Yangon · Available worldwide.
           </span>
         </div>
 
-        <div className="flex flex-wrap gap-6">
+        <div className="flex flex-wrap gap-x-5 gap-y-2 md:gap-6">
           {socials.map((s) => (
             <a
               key={s.href}

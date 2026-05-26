@@ -37,7 +37,7 @@ export function Hero() {
     <section
       id="top"
       ref={wrapRef}
-      className="relative flex min-h-[100svh] w-full items-end overflow-hidden pb-20 pt-32 md:pb-28 md:pt-36"
+      className="relative flex min-h-[100svh] w-full items-end overflow-hidden pb-16 pt-28 md:pb-28 md:pt-36"
     >
       {/* 3D scene */}
       <HeroScene className="absolute inset-0 -z-10" />
@@ -116,7 +116,7 @@ export function Hero() {
             transition={{ duration: 1, ease: EASE, delay: 1.25 }}
             className="md:col-span-4 md:col-start-9"
           >
-            <div className="flex flex-col gap-3 font-mono text-[11px] uppercase tracking-[0.3em] text-ink-400">
+            <div className="flex flex-col gap-3 font-mono text-[10px] uppercase tracking-[0.22em] text-ink-400 sm:text-[11px] sm:tracking-[0.3em]">
               <div className="flex items-center justify-between border-b border-white/5 pb-2">
                 <span className="text-ink-100">Yangon, Myanmar · GMT+6:30</span>
               </div>

@@ -38,8 +38,8 @@ export function SceneFrontend() {
   const y = useTransform(scrollYProgress, [0.2, 0.5, 0.88], [40, 0, -40]);
 
   return (
-    <div ref={trackRef} className="relative h-[200vh]">
-      <div className="sticky top-0 flex h-screen w-full items-center overflow-hidden">
+    <div ref={trackRef} className="relative md:h-[200vh]">
+      <div className="flex w-full overflow-hidden py-20 md:sticky md:top-0 md:h-screen md:items-center md:py-0">
         {/* faint grid */}
         <div
           aria-hidden
@@ -143,96 +143,3 @@ function FrontendRow({
   );
 }
 
-function FloatingUI({
-  scrollYProgress,
-}: {
-  scrollYProgress: MotionValue<number>;
-}) {
-  const opacity = useTransform(
-    scrollYProgress,
-    [0.2, 0.35, 0.65, 0.85],
-    [0, 0.65, 0.65, 0],
-  );
-  const y1 = useTransform(scrollYProgress, [0, 1], [-30, 60]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [50, -40]);
-  const y3 = useTransform(scrollYProgress, [0, 1], [10, -30]);
-
-  return (
-    <motion.div
-      aria-hidden
-      style={{ opacity }}
-      className="pointer-events-none absolute inset-0 hidden md:block"
-    >
-      {/* mock browser window */}
-      <motion.div
-        style={{ y: y1 }}
-        className="absolute left-[6%] top-[12%] w-56 rotate-[-4deg]"
-      >
-        <div className="overflow-hidden rounded-xl border border-white/8 bg-gradient-to-br from-white/[0.04] to-transparent backdrop-blur">
-          <div className="flex items-center gap-1.5 border-b border-white/5 p-3">
-            <span className="h-2 w-2 rounded-full bg-red-400/40" />
-            <span className="h-2 w-2 rounded-full bg-yellow-400/40" />
-            <span className="h-2 w-2 rounded-full bg-green-400/40" />
-            <span className="ml-3 h-1.5 w-24 rounded-full bg-white/8" />
-          </div>
-          <div className="space-y-2 p-4">
-            <div className="h-2 w-3/4 rounded-full bg-white/10" />
-            <div className="h-2 w-1/2 rounded-full bg-white/8" />
-            <div className="mt-4 h-12 rounded-md bg-gradient-to-br from-accent/15 to-cobalt/10" />
-            <div className="grid grid-cols-3 gap-1.5 pt-2">
-              <div className="h-6 rounded bg-white/5" />
-              <div className="h-6 rounded bg-white/5" />
-              <div className="h-6 rounded bg-white/5" />
-            </div>
-          </div>
-        </div>
-      </motion.div>
-
-      {/* component card */}
-      <motion.div
-        style={{ y: y2 }}
-        className="absolute right-[5%] top-[18%] w-44 rotate-[6deg]"
-      >
-        <div className="overflow-hidden rounded-xl border border-white/8 bg-gradient-to-br from-cobalt/10 to-transparent p-4 backdrop-blur">
-          <div className="h-20 rounded-md bg-gradient-to-br from-white/8 to-white/[0.02]" />
-          <div className="mt-3 space-y-1.5">
-            <div className="h-1.5 w-full rounded-full bg-white/12" />
-            <div className="h-1.5 w-2/3 rounded-full bg-white/8" />
-          </div>
-          <div className="mt-3 inline-flex h-5 items-center rounded-full bg-accent/30 px-2">
-            <span className="h-1 w-8 rounded-full bg-white/40" />
-          </div>
-        </div>
-      </motion.div>
-
-      {/* metric tile */}
-      <motion.div
-        style={{ y: y3 }}
-        className="absolute bottom-[14%] left-[10%] w-40 rotate-[3deg]"
-      >
-        <div className="overflow-hidden rounded-xl border border-white/8 bg-gradient-to-br from-white/[0.04] to-transparent p-4 backdrop-blur">
-          <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-ink-500">
-            Lighthouse
-          </span>
-          <div className="mt-2 font-display text-3xl text-ink-50">98</div>
-          <div className="mt-2 h-1 w-full overflow-hidden rounded-full bg-white/5">
-            <div className="h-full w-[96%] bg-gradient-to-r from-accent to-accent-glow" />
-          </div>
-        </div>
-      </motion.div>
-
-      {/* button-like fragment */}
-      <motion.div
-        style={{ y: y1 }}
-        className="absolute bottom-[20%] right-[8%] rotate-[-2deg]"
-      >
-        <div className="flex items-center gap-2 rounded-full border border-white/10 bg-ink-900/60 px-4 py-2 backdrop-blur">
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400/80" />
-          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-ink-200">
-            shipped
-          </span>
-        </div>
-      </motion.div>
-    </motion.div>
-  );
-}

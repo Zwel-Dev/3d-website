@@ -2,7 +2,6 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
-import { RevealText } from '@/components/ui/RevealText';
 import { EASE, fadeUp, stagger } from '@/lib/animations';
 
 const FACTS = [
@@ -42,7 +41,7 @@ export function About() {
     <section
       id="about"
       ref={sectionRef}
-      className="relative w-full overflow-hidden py-32 md:py-48"
+      className="relative w-full overflow-hidden py-20 md:py-32 lg:py-48"
     >
       <motion.div
         aria-hidden

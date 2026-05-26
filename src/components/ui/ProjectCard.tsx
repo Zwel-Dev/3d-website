@@ -30,7 +30,7 @@ export function ProjectCard({ project, index, reverse }: Props) {
       ref={ref}
       style={{ opacity }}
       className={cn(
-        'group relative grid grid-cols-1 items-center gap-10 md:grid-cols-12 md:gap-16',
+        'group relative grid grid-cols-1 items-center gap-6 sm:gap-8 md:grid-cols-12 md:gap-12 lg:gap-16',
         reverse && 'md:[&>*:first-child]:order-2',
       )}
       onMouseMove={(e) => {
@@ -91,17 +91,17 @@ export function ProjectCard({ project, index, reverse }: Props) {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-ink-950/80 via-transparent to-transparent" />
 
-          <div className="absolute left-6 top-6 flex items-center gap-2">
+          <div className="absolute left-4 top-4 flex items-center gap-2 md:left-6 md:top-6">
             <span
               className="h-1.5 w-1.5 rounded-full"
               style={{ background: project.accent, boxShadow: `0 0 12px ${project.accent}` }}
             />
-            <span className="font-mono text-[10px] uppercase tracking-[0.35em] text-ink-100">
+            <span className="font-mono text-[9px] uppercase tracking-[0.32em] text-ink-100 md:text-[10px] md:tracking-[0.35em]">
               {String(index + 1).padStart(2, '0')} · {project.year}
             </span>
           </div>
 
-          <div className="absolute bottom-6 right-6 inline-flex items-center gap-2 rounded-full bg-ink-950/60 px-3 py-1.5 text-[10px] uppercase tracking-[0.3em] text-ink-100 backdrop-blur-md ring-1 ring-white/10 transition-transform duration-500 group-hover:-translate-y-1">
+          <div className="absolute bottom-4 right-4 inline-flex items-center gap-2 rounded-full bg-ink-950/60 px-2.5 py-1 text-[9px] uppercase tracking-[0.28em] text-ink-100 backdrop-blur-md ring-1 ring-white/10 transition-transform duration-500 group-hover:-translate-y-1 md:bottom-6 md:right-6 md:px-3 md:py-1.5 md:text-[10px] md:tracking-[0.3em]">
             View case
             <span aria-hidden>→</span>
           </div>
@@ -118,7 +118,7 @@ export function ProjectCard({ project, index, reverse }: Props) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-10%' }}
           transition={{ duration: 1, ease: EASE }}
-          className="mt-4 font-display text-4xl text-ink-50 md:text-6xl"
+          className="mt-3 font-display text-3xl text-ink-50 sm:mt-4 sm:text-4xl md:text-5xl lg:text-6xl"
         >
           {project.title}
         </motion.h3>

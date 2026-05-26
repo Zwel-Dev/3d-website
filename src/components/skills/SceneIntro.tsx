@@ -52,8 +52,8 @@ export function SceneIntro() {
   const orbY2 = useTransform(scrollYProgress, [0, 1], [-40, 40]);
 
   return (
-    <div ref={trackRef} className="relative h-[200vh]">
-      <div className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden">
+    <div ref={trackRef} className="relative md:h-[200vh]">
+      <div className="flex w-full flex-col items-center justify-center overflow-hidden py-20 md:sticky md:top-0 md:h-screen md:flex-row md:py-0">
         {/* atmospheric orbs */}
         <motion.div
           aria-hidden

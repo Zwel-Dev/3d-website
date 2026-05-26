@@ -20,7 +20,7 @@ export function Experience() {
     <section
       id="experience"
       ref={sectionRef}
-      className="relative w-full overflow-hidden py-32 md:py-48"
+      className="relative w-full overflow-hidden py-20 md:py-32 lg:py-48"
     >
       <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-12">
         <motion.div
@@ -56,7 +56,7 @@ export function Experience() {
           </motion.p>
         </motion.div>
 
-        <div ref={trackRef} className="relative mt-24">
+        <div ref={trackRef} className="relative mt-16 md:mt-24">
           {/* Track line */}
           <div className="absolute left-3 top-0 h-full w-px bg-white/5 md:left-1/2" />
           <motion.div
@@ -64,7 +64,7 @@ export function Experience() {
             className="absolute left-3 top-0 h-full w-px origin-top bg-gradient-to-b from-accent-glow via-accent to-transparent md:left-1/2"
           />
 
-          <ul className="space-y-20 md:space-y-32">
+          <ul className="space-y-14 md:space-y-24 lg:space-y-32">
             {experience.map((item, i) => {
               const isLeft = i % 2 === 0;
               return (

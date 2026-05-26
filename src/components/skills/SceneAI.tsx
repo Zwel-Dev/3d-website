@@ -30,8 +30,8 @@ export function SceneAI() {
   const y = useTransform(scrollYProgress, [0.2, 0.5, 0.88], [40, 0, -40]);
 
   return (
-    <div ref={trackRef} className="relative h-[210vh]">
-      <div className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden">
+    <div ref={trackRef} className="relative md:h-[210vh]">
+      <div className="relative flex w-full justify-center overflow-hidden py-24 md:sticky md:top-0 md:h-screen md:items-center md:py-0">
         <Waveform scrollYProgress={scrollYProgress} />
 
         <div

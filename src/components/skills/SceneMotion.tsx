@@ -6,14 +6,7 @@ import {
   useTransform,
   type MotionValue,
 } from 'framer-motion';
-import dynamic from 'next/dynamic';
 import { useRef } from 'react';
-
-const MotionScene3D = dynamic(
-  () =>
-    import('@/components/three/MotionScene3D').then((m) => m.MotionScene3D),
-  { ssr: false, loading: () => null },
-);
 
 const MOTION_STACK = [
   { name: 'Framer Motion', detail: 'UI choreography & gestures' },
@@ -35,15 +28,10 @@ export function SceneMotion() {
     [0, 1, 1, 0],
   );
   const headY = useTransform(scrollYProgress, [0.2, 0.5, 0.88], [40, 0, -40]);
-  const canvasOpacity = useTransform(
-    scrollYProgress,
-    [0.08, 0.22, 0.78, 0.95],
-    [0, 1, 1, 0.4],
-  );
 
   return (
-    <div ref={trackRef} className="relative h-[230vh]">
-      <div className="sticky top-0 flex h-screen w-full items-center overflow-hidden">
+    <div ref={trackRef} className="relative md:h-[230vh]">
+      <div className="flex w-full overflow-hidden py-20 md:sticky md:top-0 md:h-screen md:items-center md:py-0">
         {/* WebGL scene fills the pinned viewport */}
         {/* <motion.div
           style={{ opacity: canvasOpacity }}

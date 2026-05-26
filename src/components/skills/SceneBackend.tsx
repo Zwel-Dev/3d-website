@@ -32,8 +32,8 @@ export function SceneBackend() {
   );
 
   return (
-    <div ref={trackRef} className="relative h-[210vh]">
-      <div className="sticky top-0 flex h-screen w-full items-center overflow-hidden">
+    <div ref={trackRef} className="relative md:h-[210vh]">
+      <div className="flex w-full overflow-hidden py-20 md:sticky md:top-0 md:h-screen md:items-center md:py-0">
         {/* Backdrop that masks the global Earth so the monolith reads cleanly */}
         <div
           aria-hidden

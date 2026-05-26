@@ -20,7 +20,7 @@ export function Contact() {
     <section
       id="contact"
       ref={ref}
-      className="relative w-full overflow-hidden pb-12 pt-32 md:pb-20 md:pt-48"
+      className="relative w-full overflow-hidden pb-12 pt-20 md:pb-20 md:pt-32 lg:pt-48"
     >
       <motion.div
         aria-hidden
@@ -42,7 +42,7 @@ export function Contact() {
           </span>
         </motion.div>
 
-        <h2 className="mt-10 font-display text-mega leading-[0.9] text-balance">
+        <h2 className="mt-8 font-display text-[clamp(2.75rem,11vw,12rem)] leading-[0.9] tracking-[-0.04em] text-balance md:mt-10">
           <span className="block">
             <RevealText text="Have an" className="text-gradient mr-4" />
             <RevealText text="idea?" className="text-gradient-accent italic" delay={0.1} />

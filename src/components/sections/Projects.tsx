@@ -19,7 +19,7 @@ export function Projects() {
     <section
       id="work"
       ref={sectionRef}
-      className="relative w-full overflow-hidden py-32 md:py-48"
+      className="relative w-full overflow-hidden py-20 md:py-32 lg:py-48"
     >
       {/* Heading band */}
       <div className="relative z-10 mx-auto max-w-7xl px-6 md:px-12">
@@ -72,7 +72,7 @@ export function Projects() {
         </motion.p>
       </div>
 
-      <div className="relative z-10 mx-auto mt-24 flex max-w-7xl flex-col gap-32 px-6 md:gap-48 md:px-12">
+      <div className="relative z-10 mx-auto mt-16 flex max-w-7xl flex-col gap-20 px-6 md:mt-24 md:gap-32 md:px-12 lg:gap-48">
         {projects.map((p, i) => (
           <ProjectCard
             key={p.id}
@@ -83,7 +83,7 @@ export function Projects() {
         ))}
       </div>
 
-      <div className="relative z-10 mx-auto mt-32 flex max-w-7xl justify-center px-6 md:px-12">
+      <div className="relative z-10 mx-auto mt-20 flex max-w-7xl justify-center px-6 md:mt-32 md:px-12">
         <MagneticButton href="#contact" variant="ghost">
           See full archive
         </MagneticButton>
