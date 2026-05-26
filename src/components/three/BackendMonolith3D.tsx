@@ -175,7 +175,7 @@ function HudBadge({
             loading="lazy"
             decoding="async"
             className={`shrink-0 object-contain ${
-              compact ? 'h-3.5 w-3.5' : 'h-4 w-4'
+              compact ? 'h-7 w-7' : 'h-8 w-8'
             }`}
           />
           <div className="flex min-w-0 flex-col leading-tight">
@@ -272,30 +272,6 @@ function Monolith({
           />
         </mesh>
       ))}
-
-      {/* Floor halo + inner disc */}
-      <mesh position={[0, -1.78, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-        <ringGeometry args={[0.4, 2.4, 64]} />
-        <meshBasicMaterial
-          color="#f3d9b1"
-          transparent
-          opacity={0.16}
-          blending={THREE.AdditiveBlending}
-          depthWrite={false}
-          side={THREE.DoubleSide}
-        />
-      </mesh>
-      <mesh position={[0, -1.78, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-        <ringGeometry args={[0.55, 0.95, 64]} />
-        <meshBasicMaterial
-          color="#fef6e0"
-          transparent
-          opacity={0.3}
-          blending={THREE.AdditiveBlending}
-          depthWrite={false}
-          side={THREE.DoubleSide}
-        />
-      </mesh>
 
       {/* HUD — tethered tech badges arranged around the monolith */}
       {HUD.map((tech) => (

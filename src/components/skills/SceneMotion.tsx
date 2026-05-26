@@ -1,11 +1,6 @@
 'use client';
 
-import {
-  motion,
-  useScroll,
-  useTransform,
-  type MotionValue,
-} from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 
 const MOTION_STACK = [
@@ -78,7 +73,6 @@ export function SceneMotion() {
                   name={item.name}
                   detail={item.detail}
                   index={i}
-                  scrollYProgress={scrollYProgress}
                 />
               ))}
             </div>
@@ -93,23 +87,19 @@ function MotionRow({
   name,
   detail,
   index,
-  scrollYProgress,
 }: {
   name: string;
   detail: string;
   index: number;
-  scrollYProgress: MotionValue<number>;
 }) {
-  const start = 0.35 + index * 0.06;
-  const opacity = useTransform(
-    scrollYProgress,
-    [start, start + 0.1, 0.72, 0.85],
-    [0, 1, 1, 0],
-  );
-  const y = useTransform(scrollYProgress, [start, start + 0.1], [24, 0]);
-
   return (
-    <motion.div style={{ opacity, y }} className="group flex flex-col">
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, margin: '0px 0px -15% 0px' }}
+      transition={{ duration: 0.6, ease: 'easeOut', delay: index * 0.1 }}
+      className="group flex flex-col"
+    >
       <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-ink-500">
         {String(index + 1).padStart(2, '0')}
       </span>

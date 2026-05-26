@@ -1,11 +1,6 @@
 'use client';
 
-import {
-  motion,
-  useScroll,
-  useTransform,
-  type MotionValue,
-} from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 
 interface TechItem {
@@ -77,12 +72,7 @@ export function SceneFrontend() {
           <div className="md:col-span-6">
             <ul className="flex flex-col">
               {FRONTEND.map((item, i) => (
-                <FrontendRow
-                  key={item.name}
-                  item={item}
-                  index={i}
-                  scrollYProgress={scrollYProgress}
-                />
+                <FrontendRow key={item.name} item={item} index={i} />
               ))}
             </ul>
           </div>
@@ -95,23 +85,19 @@ export function SceneFrontend() {
 function FrontendRow({
   item,
   index,
-  scrollYProgress,
 }: {
   item: TechItem;
   index: number;
-  scrollYProgress: MotionValue<number>;
 }) {
-  const start = 0.32 + index * 0.045;
-  const opacity = useTransform(
-    scrollYProgress,
-    [start, start + 0.1, 0.72, 0.85],
-    [0, 1, 1, 0],
-  );
-  const x = useTransform(scrollYProgress, [start, start + 0.1], [40, 0]);
-
+  // viewport-triggered reveal instead of scroll-progress math — fires when the
+  // row is actually visible, so it works whether the chapter is pinned (desktop)
+  // or flows naturally (mobile).
   return (
     <motion.li
-      style={{ opacity, x }}
+      initial={{ opacity: 0, x: 40 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: false, margin: '0px 0px -15% 0px' }}
+      transition={{ duration: 0.6, ease: 'easeOut', delay: index * 0.08 }}
       className="group relative flex items-center gap-5 border-b border-white/5 py-5 last:border-b-0"
     >
       <span className="font-mono text-[10px] uppercase tracking-[0.35em] text-ink-500">

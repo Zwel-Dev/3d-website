@@ -80,7 +80,6 @@ export function SceneAI() {
                 name={item.name}
                 icon={item.icon}
                 index={i}
-                scrollYProgress={scrollYProgress}
               />
             ))}
           </div>
@@ -94,24 +93,17 @@ function AIChip({
   name,
   icon,
   index,
-  scrollYProgress,
 }: {
   name: string;
   icon: string | null;
   index: number;
-  scrollYProgress: MotionValue<number>;
 }) {
-  const start = 0.42 + index * 0.04;
-  const opacity = useTransform(
-    scrollYProgress,
-    [start, start + 0.1, 0.75, 0.85],
-    [0, 1, 1, 0],
-  );
-  const y = useTransform(scrollYProgress, [start, start + 0.1], [16, 0]);
-
   return (
     <motion.span
-      style={{ opacity, y }}
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, margin: '0px 0px -15% 0px' }}
+      transition={{ duration: 0.55, ease: 'easeOut', delay: 0.1 + index * 0.08 }}
       className="inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-ink-900/70 px-5 py-2.5 font-mono text-[11px] uppercase tracking-[0.3em] text-ink-100 backdrop-blur"
     >
       {icon && (
