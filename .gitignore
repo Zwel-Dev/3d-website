@@ -38,3 +38,8 @@ next-env.d.ts
 # IDE
 .idea
 .vscode
+earth_breathing.original.backup.glb
+
+# Local env
+.env.local
+.env*.local

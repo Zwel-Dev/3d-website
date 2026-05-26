@@ -9,7 +9,7 @@ const FACTS = [
   { label: 'Years coding', value: '05+' },
   { label: 'Primary stack', value: 'MERN' },
   { label: 'Disciplines bridged', value: '02' },
-  { label: 'Cups of coffee', value: '∞' },
+  // { label: 'Cups of coffee', value: '∞' },
 ];
 
 const PRINCIPLES = [
@@ -75,8 +75,8 @@ export function About() {
               variants={fadeUp}
               className="mt-8 font-display text-display text-ink-50 text-balance"
             >
-              A studio of <em className="text-gradient-accent">one</em> — obsessed with
-              the seam between <em className="text-gradient-accent">code</em> and{' '}
+              A studio of <em className="text-gradient-accent">one</em>, working the seam
+              between <em className="text-gradient-accent">code</em> and{' '}
               <em className="text-gradient-accent">feel</em>.
             </motion.h2>
           </div>

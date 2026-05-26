@@ -36,7 +36,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://your-domain.dev'),
+  metadataBase: new URL('https://zwethutaminthein.com'),
   title: {
     default: 'Zwe Thuta — Frontend-first Full-Stack Developer',
     template: '%s · Zwe Thuta',

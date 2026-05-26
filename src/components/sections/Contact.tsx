@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
-import { MagneticButton } from '@/components/ui/MagneticButton';
+import { ContactForm } from '@/components/ui/ContactForm';
 import { RevealText } from '@/components/ui/RevealText';
 import { socials } from '@/lib/data';
 import { EASE } from '@/lib/animations';
@@ -60,46 +60,35 @@ export function Contact() {
           transition={{ duration: 1, ease: EASE, delay: 0.3 }}
           className="mt-12 grid grid-cols-1 gap-10 md:grid-cols-12"
         >
-          <div className="md:col-span-7">
-            <p className="max-w-xl text-lg leading-relaxed text-ink-200 md:text-xl">
-              Open to freelance, full-time, and collaboration on ambitious web work —
-              marketing sites, MERN-stack products, and motion-led experiences. If your
-              team values <em className="text-ink-50">craft</em> and{' '}
-              <em className="text-ink-50">considered motion</em>, I'd love to hear from you.
+          {/* Left — context + direct contact details for users who prefer email */}
+          <div className="md:col-span-5">
+            <p className="max-w-md text-lg leading-relaxed text-ink-200 md:text-xl">
+              Open to freelance, full-time, and collaboration on ambitious web
+              work — marketing sites, MERN-stack products, and motion-led
+              experiences. If your team values{' '}
+              <em className="text-ink-50">craft</em> and{' '}
+              <em className="text-ink-50">considered motion</em>, I&apos;d love
+              to hear from you.
             </p>
-
-            <div className="mt-10 flex flex-wrap items-center gap-4">
-              <MagneticButton
-                href="mailto:zwethuta1998@gmail.com"
-                variant="primary"
-              >
-                Email me
-              </MagneticButton>
-              <MagneticButton href="tel:+959766135388" variant="ghost">
-                Call · +95 9 766 135 388
-              </MagneticButton>
-            </div>
 
             <a
               href="mailto:zwethuta1998@gmail.com"
               data-hover
-              className="mt-10 block font-display text-3xl text-ink-50 transition-colors hover:text-accent-glow md:text-5xl"
+              className="mt-10 block font-display text-2xl text-ink-50 transition-colors hover:text-accent-glow md:text-3xl lg:text-4xl"
             >
               zwethuta1998@gmail.com
-              <span className="ml-3 inline-block translate-y-[-6px] text-accent-glow">↗</span>
+              <span className="ml-3 inline-block translate-y-[-4px] text-accent-glow">↗</span>
             </a>
 
-            <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.3em] text-ink-400">
+            <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.3em] text-ink-400">
               Mingaladon, Yangon · Myanmar
             </p>
-          </div>
 
-          <div className="md:col-span-4 md:col-start-9">
-            <div className="glass-strong relative overflow-hidden rounded-3xl p-7">
+            <div className="glass-strong relative mt-10 overflow-hidden rounded-3xl p-6">
               <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-ink-400">
                 Elsewhere
               </span>
-              <ul className="mt-6 divide-y divide-white/5">
+              <ul className="mt-4 divide-y divide-white/5">
                 {socials.map((s) => (
                   <li key={s.href}>
                     <a
@@ -107,9 +96,9 @@ export function Contact() {
                       target="_blank"
                       rel="noopener noreferrer"
                       data-hover
-                      className="group flex items-center justify-between py-4 text-ink-100 transition-colors hover:text-accent-glow"
+                      className="group flex items-center justify-between py-3 text-ink-100 transition-colors hover:text-accent-glow"
                     >
-                      <span className="text-base">{s.label}</span>
+                      <span className="text-sm">{s.label}</span>
                       <span className="inline-block translate-x-0 text-accent-glow opacity-60 transition-all duration-500 group-hover:translate-x-1 group-hover:opacity-100">
                         →
                       </span>
@@ -117,6 +106,17 @@ export function Contact() {
                   </li>
                 ))}
               </ul>
+            </div>
+          </div>
+
+          {/* Right — the working contact form */}
+          <div className="md:col-span-6 md:col-start-7">
+            <div className="glass rounded-3xl border border-white/8 p-6 md:p-8">
+              <div className="mb-6 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.4em] text-ink-300">
+                <span className="h-px w-8 bg-accent-glow/60" />
+                Send a message
+              </div>
+              <ContactForm />
             </div>
           </div>
         </motion.div>

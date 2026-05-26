@@ -17,10 +17,10 @@ interface TechItem {
 const FRONTEND: TechItem[] = [
   { name: 'React', icon: '/assets/tech/reactjs.png', note: 'Component model & state' },
   { name: 'Next.js', icon: '/assets/tech/nextjs.png', note: 'App Router · RSC · routing' },
+  { name: 'Angular', icon: '/assets/tech/angular.png', note: 'Structured enterprise UI' },
   { name: 'TypeScript', icon: '/assets/tech/typescript.png', note: 'Type-safe surface area' },
   { name: 'JavaScript', icon: '/assets/tech/javascript.png', note: 'Browser-native craft' },
   { name: 'Tailwind CSS', icon: '/assets/tech/tailwind-css.png', note: 'Design tokens at the markup' },
-  { name: 'Angular', icon: '/assets/tech/angular.png', note: 'Structured enterprise UI' },
 ];
 
 export function SceneFrontend() {
@@ -123,7 +123,7 @@ function FrontendRow({
         alt={item.name}
         loading="lazy"
         decoding="async"
-        className="h-9 w-9 shrink-0 object-contain"
+        className="h-12 w-12 shrink-0 object-contain drop-shadow-[0_0_18px_rgba(91,141,239,0.35)] transition-transform duration-500 ease-expo group-hover:scale-110"
       />
 
       <div className="flex flex-1 items-baseline justify-between gap-4">
