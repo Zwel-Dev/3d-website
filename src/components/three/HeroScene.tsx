@@ -9,23 +9,36 @@ import { useInViewFrameloop } from '@/hooks/useInViewFrameloop';
 
 useGLTF.preload('/assets/3d/me.glb');
 
-function RoboProbe() {
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 767px)');
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
+  return isMobile;
+}
+
+function RoboProbe({ isMobile }: { isMobile: boolean }) {
   const groupRef = useRef<THREE.Group>(null);
   const { scene } = useGLTF('/assets/3d/me.glb');
 
   useFrame((_, delta) => {
     if (!groupRef.current) return;
-    // Slower rotation than the probe (people-shaped models look dizzy at 0.18).
-    groupRef.current.rotation.y += delta * 0.08;
+    groupRef.current.rotation.y += delta * 0.20;
   });
+
+  // Mobile: centered behind the hero copy as a soft backdrop.
+  // Desktop:  off to the right as a companion piece beside the copy.
+  const position: [number, number, number] = isMobile
+    ? [0, -0.1, 0]
+    : [1.3, -0.1, 0];
 
   return (
     <Float speed={0.8} floatIntensity={0.5} rotationIntensity={0}>
-      <group
-        ref={groupRef}
-        position={[1.3, -0.1, 0]}
-        scale={2.6}
-      >
+      <group ref={groupRef} position={position} scale={2.6}>
         <primitive object={scene} />
       </group>
     </Float>
@@ -90,6 +103,7 @@ interface Props {
 
 export function HeroScene({ className }: Props) {
   const [ready, setReady] = useState(false);
+  const isMobile = useIsMobile();
   const { ref, inView } = useInViewFrameloop<HTMLDivElement>('400px');
   useEffect(() => setReady(true), []);
   if (!ready) return null;
@@ -113,7 +127,7 @@ export function HeroScene({ className }: Props) {
         <CinematicLights />
         <Suspense fallback={null}>
           <Environment preset="night" />
-          <RoboProbe />
+          <RoboProbe isMobile={isMobile} />
         </Suspense>
         <CameraDrift />
         <EffectComposer>
