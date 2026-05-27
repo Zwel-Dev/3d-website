@@ -7,20 +7,25 @@ import { Suspense, useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { useInViewFrameloop } from '@/hooks/useInViewFrameloop';
 
-useGLTF.preload('/assets/3d/robo_probe.glb');
+useGLTF.preload('/assets/3d/me.glb');
 
 function RoboProbe() {
   const groupRef = useRef<THREE.Group>(null);
-  const { scene } = useGLTF('/assets/3d/robo_probe.glb');
+  const { scene } = useGLTF('/assets/3d/me.glb');
 
   useFrame((_, delta) => {
     if (!groupRef.current) return;
-    groupRef.current.rotation.y += delta * 0.18;
+    // Slower rotation than the probe (people-shaped models look dizzy at 0.18).
+    groupRef.current.rotation.y += delta * 0.08;
   });
 
   return (
     <Float speed={0.8} floatIntensity={0.5} rotationIntensity={0}>
-      <group ref={groupRef} position={[1.6, -1.0, 0]} scale={1.6}>
+      <group
+        ref={groupRef}
+        position={[1.3, -0.1, 0]}
+        scale={2.6}
+      >
         <primitive object={scene} />
       </group>
     </Float>
